@@ -5,7 +5,7 @@ Learn how to integreate Postgres with Redpanda via Debezium for change data capt
 This is an abbreviated 2024 version of the [Redpanda blog 2022 tutorial](https://redpanda.com/blog/change-data-capture-postgres-debezium-kafka-connect) using Docker Compose `v2.27.0`:
 
 1. open a shell
-2. `docker compose up` to build:
+2. `docker compose up` to run:
     1. a Redpanda broker
     2. the Redpanda console on http://localhost:8080/
     3. a postgresql instance configured with `extended.conf` and init'd with `init.sql` data
