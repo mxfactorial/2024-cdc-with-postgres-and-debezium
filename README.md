@@ -11,16 +11,16 @@ This is an abbreviated 2024 version of the [Redpanda blog 2022 tutorial](https:/
     3. a postgresql instance configured with `extended.conf` and init'd with `init.sql` data
     4. Debezium connector
 3. wait for init logging to finish
-3. open another shell
-4. `docker ps` to view running compose services
-5. open http://localhost:8080/topics in a browser to view metadata topics added by Kafka Connect
-6. `docker exec redpanda-debezium-1 curl -is -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @/tmp/connector.json` in the second shell to configure Debezium with a Postgresql connection
-7. `docker exec redpanda-debezium-1 curl -s -H "Accept:application/json" localhost:8083/connectors/` to view the new configuration's availability
-8. refresh the http://localhost:8080/topics screen to view the `shop.public.customer_addresses` topic added by the new configuration
-9. select the http://localhost:8080/topics/shop.public.customer_addresses link to view the **51** messages in the `shop.public.customer_addresses` topic
-10. return to the second shell and `docker exec -e PGPASSWORD=password redpanda-postgresql-1 psql -U postgres -d shop -c "update public.customer_addresses set state = 'Johannesburg' where id = 10;"` to add a row change in Postgresql
-11. refresh the http://localhost:8080/topics/shop.public.customer_addresses tab to view the **52** messages in the `shop.public.customer_addresses` topic
-12. `docker compose down --volumes` to clean up
+4. open another shell
+5. `docker ps` to view running compose services
+6. open http://localhost:8080/topics in a browser to view metadata topics added by Kafka Connect
+7. `docker exec redpanda-debezium-1 curl -is -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @/tmp/connector.json` in the second shell to configure Debezium with a Postgresql connection
+8. `docker exec redpanda-debezium-1 curl -s -H "Accept:application/json" localhost:8083/connectors/` to view the new configuration's availability
+9. refresh the http://localhost:8080/topics screen to view the `shop.public.customer_addresses` topic added by the new configuration
+10. select the http://localhost:8080/topics/shop.public.customer_addresses link to view the **51** messages in the `shop.public.customer_addresses` topic
+11. return to the second shell and `docker exec -e PGPASSWORD=password redpanda-postgresql-1 psql -U postgres -d shop -c "update public.customer_addresses set state = 'Johannesburg' where id = 10;"` to add a row change in Postgresql
+12. refresh the http://localhost:8080/topics/shop.public.customer_addresses tab to view the **52** messages in the `shop.public.customer_addresses` topic
+13. `docker compose down --volumes` to clean up
 
 —-------
 
